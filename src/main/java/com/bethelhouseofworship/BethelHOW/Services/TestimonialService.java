@@ -14,4 +14,16 @@ public class TestimonialService {
     public Testimonial addTestimonial(Testimonial testimonial){
         return testimonialRepository.save(testimonial);
     }
+
+    public Iterable<Testimonial> getAllTestimonials(){
+        return testimonialRepository.findAll();
+    }
+
+    public boolean deleteTestimonial(Long id){
+        if(testimonialRepository.existsById(id)) {
+            testimonialRepository.deleteById(id);
+            return true;
+        }
+        else return false;
+    }
 }
