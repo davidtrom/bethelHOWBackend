@@ -23,6 +23,11 @@ public class PrayerRequestController {
 
     @GetMapping("/view-requests")
     public ResponseEntity<Iterable<PrayerRequest>> viewPrayerRequests (){
-        return new ResponseEntity<>(prayerRequestService.getAllPrayerRequests(), HttpStatus.CREATED);
+        return new ResponseEntity<>(prayerRequestService.getAllPrayerRequests(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete-request")
+    public ResponseEntity<Boolean> viewPrayerRequests (@PathVariable Long requestId){
+        return new ResponseEntity<>(prayerRequestService.deletePrayerRequest(requestId), HttpStatus.OK);
     }
 }

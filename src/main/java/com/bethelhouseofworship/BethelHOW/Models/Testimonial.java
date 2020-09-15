@@ -30,4 +30,60 @@ public class Testimonial {
         this.locationCountry = locationCountry;
         this.testimonial = testimonial;
     }
+
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getLocationCity() {
+        return locationCity;
+    }
+
+    public void setLocationCity(String locationCity) {
+        this.locationCity = locationCity;
+    }
+
+    public String getLocationState() {
+        return locationState;
+    }
+
+    public void setLocationState(String locationState) {
+        this.locationState = locationState;
+    }
+
+    public String getLocationCountry() {
+        return locationCountry;
+    }
+
+    public void setLocationCountry(String locationCountry) {
+        this.locationCountry = locationCountry;
+    }
+
+    public String getTestimonial() {
+        return testimonial;
+    }
+
+    public void setTestimonial(String testimonial) {
+        this.testimonial = testimonial;
+    }
 }
