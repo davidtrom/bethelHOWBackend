@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class EmployeeController {
     @RequestMapping({"/greeting"})
     public String welcomePage(){
-        return "Welcome";
+        return "Welcome.  The Secret Key is: " + System.getenv("jwt.secret");
     }
 }
