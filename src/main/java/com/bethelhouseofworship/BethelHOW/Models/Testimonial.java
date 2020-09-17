@@ -11,7 +11,7 @@ public class Testimonial {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long Id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String locationCity;
@@ -22,7 +22,7 @@ public class Testimonial {
     public Testimonial() {}
 
     public Testimonial(Long id, String firstName, String lastName, String locationCity, String locationState, String locationCountry, String testimonial) {
-        Id = id;
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.locationCity = locationCity;
@@ -32,11 +32,11 @@ public class Testimonial {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getFirstName() {
