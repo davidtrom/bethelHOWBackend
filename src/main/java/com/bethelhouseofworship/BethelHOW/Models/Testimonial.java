@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
 import java.util.Locale;
 
 @Entity
@@ -18,10 +19,11 @@ public class Testimonial {
     private String locationState;
     private String locationCountry;
     private String testimonial;
+    private LocalDate creationDate = LocalDate.of(2020, 9, 19);
 
     public Testimonial() {}
 
-    public Testimonial(Long id, String firstName, String lastName, String locationCity, String locationState, String locationCountry, String testimonial) {
+    public Testimonial(Long id, String firstName, String lastName, String locationCity, String locationState, String locationCountry, String testimonial, LocalDate creationDate) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -29,6 +31,7 @@ public class Testimonial {
         this.locationState = locationState;
         this.locationCountry = locationCountry;
         this.testimonial = testimonial;
+        this.creationDate = creationDate;
     }
 
     public Long getId() {
@@ -85,5 +88,13 @@ public class Testimonial {
 
     public void setTestimonial(String testimonial) {
         this.testimonial = testimonial;
+    }
+
+    public LocalDate getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
     }
 }

@@ -9,10 +9,11 @@ import java.time.LocalDate;
 
 class TestimonialTest {
     private Testimonial testimonialTest;
+    private LocalDate creationDate = LocalDate.of(1982, 7, 8);
 
     @BeforeEach
     void setUp() {
-        testimonialTest = new Testimonial(3L, "Simon", "Peter", "Jerusalem", "Jerusalem", "Israel", "God appeared to me in a burning bush");
+        testimonialTest = new Testimonial(3L, "Simon", "Peter", "Jerusalem", "Jerusalem", "Israel", "God appeared to me in a burning bush", creationDate);
     }
 
     @Test
@@ -94,7 +95,7 @@ class TestimonialTest {
 
     @Test
     void getCreationDate() {
-        Assertions.assertEquals(creationDate, TestimonialTest.getCreationDate());
+        Assertions.assertEquals(LocalDate.of(1982, 7, 8), testimonialTest.getCreationDate());
     }
 
     @Test
