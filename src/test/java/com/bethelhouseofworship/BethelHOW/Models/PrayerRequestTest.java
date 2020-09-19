@@ -4,13 +4,16 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+
 
 class PrayerRequestTest {
     private PrayerRequest prayerRequestTest;
+    private LocalDate creationDate = LocalDate.of(2020, 9, 19);
 
     @BeforeEach
     void setUp() {
-        prayerRequestTest = new PrayerRequest(3L, "Simon", "Peter", "Jerusalem", "Jerusalem", "Israel", "Please pray for my son");
+        prayerRequestTest = new PrayerRequest(3L, "Simon", "Peter", "Jerusalem", "Jerusalem", "Israel", "Please pray for my son", creationDate);
     }
 
     @Test
@@ -88,5 +91,16 @@ class PrayerRequestTest {
     void setPrayerRequestTest() {
         prayerRequestTest.setPrayerRequest("Pray for my house during the hurricane");
         Assertions.assertEquals("Pray for my house during the hurricane", prayerRequestTest.getPrayerRequest());
+    }
+
+    @Test
+    void getCreationDate() {
+        Assertions.assertEquals(creationDate, prayerRequestTest.getCreationDate());
+    }
+
+    @Test
+    void setCreationDate() {
+        prayerRequestTest.setCreationDate(LocalDate.of(2020, 7, 8));
+        Assertions.assertEquals(LocalDate.of(2020, 7, 8), prayerRequestTest.getCreationDate());
     }
 }

@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 public class PrayerRequest {
@@ -18,10 +20,11 @@ public class PrayerRequest {
     private String locationState;
     private String locationCountry;
     private String prayerRequest;
+    private LocalDate creationDate  = LocalDate.now();
 
     public PrayerRequest(){}
 
-    public PrayerRequest(Long id, String firstName, String lastName, String locationCity, String locationState, String locationCountry, String prayerRequest) {
+    public PrayerRequest(Long id, String firstName, String lastName, String locationCity, String locationState, String locationCountry, String prayerRequest, LocalDate creationDate) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -29,6 +32,7 @@ public class PrayerRequest {
         this.locationState = locationState;
         this.locationCountry = locationCountry;
         this.prayerRequest = prayerRequest;
+        this.creationDate = creationDate;
     }
 
     public Long getId() {
@@ -85,5 +89,13 @@ public class PrayerRequest {
 
     public void setPrayerRequest(String testimonial) {
         this.prayerRequest = testimonial;
+    }
+
+    public LocalDate getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
     }
 }
