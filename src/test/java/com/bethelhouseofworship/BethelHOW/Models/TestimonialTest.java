@@ -4,13 +4,16 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+
 
 class TestimonialTest {
     private Testimonial testimonialTest;
+    private LocalDate creationDate = LocalDate.of(1982, 7, 8);
 
     @BeforeEach
     void setUp() {
-        testimonialTest = new Testimonial(3L, "Simon", "Peter", "Jerusalem", "Jerusalem", "Israel", "God appeared to me in a burning bush");
+        testimonialTest = new Testimonial(3L, "Simon", "Peter", "Jerusalem", "Jerusalem", "Israel", "God appeared to me in a burning bush", creationDate);
     }
 
     @Test
@@ -88,5 +91,16 @@ class TestimonialTest {
     void setTestimonial() {
         testimonialTest.setTestimonial("A tongue of fire fell upon me");
         Assertions.assertEquals("A tongue of fire fell upon me", testimonialTest.getTestimonial());
+    }
+
+    @Test
+    void getCreationDate() {
+        Assertions.assertEquals(LocalDate.of(1982, 7, 8), testimonialTest.getCreationDate());
+    }
+
+    @Test
+    void setCreationDate() {
+        testimonialTest.setCreationDate(LocalDate.of(2020, 7, 8));
+        Assertions.assertEquals(LocalDate.of(2020, 7, 8), testimonialTest.getCreationDate());
     }
 }
