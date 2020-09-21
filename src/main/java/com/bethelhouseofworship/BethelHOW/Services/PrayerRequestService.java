@@ -12,6 +12,8 @@ public class PrayerRequestService {
     private PrayerRequestRepository prayerRequestRepository;
 
     public PrayerRequest addRequest(PrayerRequest prayerRequest){
+
+        System.out.println(prayerRequest.getLocationCity());
         return prayerRequestRepository.save(prayerRequest);
     }
 
