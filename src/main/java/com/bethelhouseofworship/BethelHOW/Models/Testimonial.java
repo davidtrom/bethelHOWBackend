@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
-import java.util.Locale;
+
 
 @Entity
 public class Testimonial {
@@ -19,7 +19,7 @@ public class Testimonial {
     private String locationState;
     private String locationCountry;
     private String testimonial;
-    private LocalDate creationDate = LocalDate.of(2020, 9, 19);
+    private LocalDate creationDate = LocalDate.now();
 
     public Testimonial() {}
 
