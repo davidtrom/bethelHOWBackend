@@ -19,7 +19,7 @@ public class TestimonialController {
         return new ResponseEntity<>(testimonialService.addTestimonial(testimonial), HttpStatus.CREATED);
     }
 
-    @GetMapping("/get-testimonials")
+    @GetMapping("/view-all")
     public ResponseEntity <Iterable<Testimonial>> getTestimonials(){
         return new ResponseEntity<>(testimonialService.getAllTestimonials(), HttpStatus.OK);
     }
