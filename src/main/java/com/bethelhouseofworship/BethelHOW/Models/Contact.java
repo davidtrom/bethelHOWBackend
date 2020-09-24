@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
 
 @Entity
 public class Contact {
@@ -19,10 +20,11 @@ public class Contact {
     private String state;
     private String country;
     private String message;
+    private LocalDate date = LocalDate.now();
 
     public Contact() {}
 
-    public Contact(Long id, String firstName, String lastName, String email, String phoneNum, String city, String state, String country, String message) {
+    public Contact(Long id, String firstName, String lastName, String email, String phoneNum, String city, String state, String country, String message, LocalDate date) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -32,6 +34,7 @@ public class Contact {
         this.state = state;
         this.country = country;
         this.message = message;
+        this.date = date;
     }
 
     public Long getId() {
@@ -104,6 +107,14 @@ public class Contact {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 }
 

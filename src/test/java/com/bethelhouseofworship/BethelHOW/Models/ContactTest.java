@@ -4,12 +4,15 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+
 class ContactTest {
     private Contact contactTest;
+    LocalDate date = LocalDate.of(2020, 9, 24);
 
     @BeforeEach
     void setUp() {
-        contactTest = new Contact(2L, "John", "Little", "little@yahoo.com", "302-650-9980", "Dover", "DE", "USA", "Can you help me ship aid to Africa");
+        contactTest = new Contact(2L, "John", "Little", "little@yahoo.com", "302-650-9980", "Dover", "DE", "USA", "Can you help me ship aid to Africa", date);
     }
 
     @Test
@@ -109,5 +112,16 @@ class ContactTest {
     void setMessage() {
         contactTest.setMessage("We have a container box ready to ship to Africa");
         Assertions.assertEquals("We have a container box ready to ship to Africa", contactTest.getMessage());
+    }
+
+    @Test
+    void getDate() {
+        Assertions.assertEquals(date, contactTest.getDate());
+    }
+
+    @Test
+    void setDate() {
+        contactTest.setDate(LocalDate.of(2020, 8, 22));
+        Assertions.assertEquals(LocalDate.of(2020, 8, 22), contactTest.getDate());
     }
 }
