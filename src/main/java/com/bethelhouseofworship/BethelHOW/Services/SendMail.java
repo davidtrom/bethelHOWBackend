@@ -15,16 +15,15 @@ import javax.mail.PasswordAuthentication;
 public class SendMail {
 
     /*To use this class also add dependency to POM:
-
         <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>javax.mail</artifactId>
             <version>1.6.2</version>
         </dependency>
-
      */
 
-    public static Boolean sendMessage (String firstName, String lastName, String email, String phoneNumber, LocalDate dateOfBirth, String reasonForContact, String prefferedApptTime, String messsage){
+    public static Boolean sendMessage (LocalDate date, String firstName, String lastName, String email, String phoneNumber,
+                                       String city, String state, String country, String messsage){
 
         String emailPassword = System.getenv("EMAIL_PASSWORD");
         //System.out.println(emailPassword);
@@ -43,10 +42,6 @@ public class SendMail {
         Properties properties = System.getProperties();
 
         // Setup mail server
-//        properties.put("mail.smtp.host", host);
-//        properties.put("mail.smtp.port", "465");
-//        properties.put("mail.smtp.ssl.enable", "true");
-//        properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
         properties.put("mail.smtp.host", host);
@@ -76,15 +71,16 @@ public class SendMail {
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
             // Set Subject: header field
-            message.setSubject("Potential Patient Requests Information!");
+            message.setSubject("Bethel House of Worship website contact");
 
             // Now set the actual message
-            message.setText("Dr. Goyal, \n" +
-                    "The following potential patient has requested more information and provided their contact information as follows: \n" + "\n" +
+            message.setText("Bethel House of Worship, \n" +
+                    "Date received: " + date + "\n" +
+                    "The following disciple has sent the following message and provided their contact information as follows: \n" + "\n" +
                     "Name: " + firstName +" " + lastName + "\n" + "Email: " + email + "\n" + "Phone Number: " + phoneNumber + "\n" +
-                    "Date of Birth: " + dateOfBirth + "\n" + "Reason for Contact: " +reasonForContact + "\n" +
-                    "Preferred Appointment Time: " + prefferedApptTime + "\n" + "Message: " + messsage + "\n" + "\n" +
-                    "Sincerely yours," + "\n" + "\n" + "Website Contact "  );
+                    "Location: " + city +", " + state + ", " + country +"\n" +
+                    "Message: " + messsage + "\n" + "\n" +
+                    "Sincerely yours," + "\n" + "\n" + "Bethel House of Worship Website Contact "  );
 
             System.out.println("sending...");
             // Send message
