@@ -24,7 +24,7 @@ public class Contact {
 
     public Contact() {}
 
-    public Contact(Long id, String firstName, String lastName, String email, String phoneNum, String city, String state, String country, String message, LocalDate date) {
+    public Contact(Long id, String firstName, String lastName, String email, String phoneNum, String city, String state, String country, String message) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -34,7 +34,7 @@ public class Contact {
         this.state = state;
         this.country = country;
         this.message = message;
-        this.date = date;
+        //this.date = date;
     }
 
     public Long getId() {

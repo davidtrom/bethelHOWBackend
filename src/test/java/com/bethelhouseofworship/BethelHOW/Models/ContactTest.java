@@ -12,7 +12,7 @@ class ContactTest {
 
     @BeforeEach
     void setUp() {
-        contactTest = new Contact(2L, "John", "Little", "little@yahoo.com", "302-650-9980", "Dover", "DE", "USA", "Can you help me ship aid to Africa", date);
+        contactTest = new Contact(2L, "John", "Little", "little@yahoo.com", "302-650-9980", "Dover", "DE", "USA", "Can you help me ship aid to Africa");
     }
 
     @Test
