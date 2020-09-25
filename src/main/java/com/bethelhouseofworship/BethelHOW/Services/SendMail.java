@@ -1,5 +1,6 @@
 package com.bethelhouseofworship.BethelHOW.Services;
 
+import com.bethelhouseofworship.BethelHOW.Models.Contact;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.Properties;
@@ -22,18 +23,20 @@ public class SendMail {
         </dependency>
      */
 
-    public static Boolean sendMessage (LocalDate date, String firstName, String lastName, String email, String phoneNumber,
-                                       String city, String state, String country, String messsage){
+    public static Boolean sendMessage (Contact contactToEmail){
 
-        String emailPassword = System.getenv("EMAIL_PASSWORD");
+//    public static Boolean sendMessage (LocalDate date, String firstName, String lastName, String email, String phoneNumber,
+//                                       String city, String state, String country, String messsage){
+
+        //String emailPassword = System.getenv("EMAIL_PASSWORD");
         //System.out.println(emailPassword);
 
         // Recipient's email ID needs to be mentioned.
-        //String to = "mgoyal8954@gmail.com";
+        //String to = "bethel2029@gmail.com";
         String to = "davidtrom@hotmail.com";
 
         // Sender's email ID needs to be mentioned
-        String from = "drmanjugoyalwebsite@outlook.com";
+        String from = "bethelworshipprayerline@outlook.com";
 
         // Assuming you are sending email from through outlooks smtp
         String host = "smtp-mail.outlook.com";
@@ -52,7 +55,7 @@ public class SendMail {
 
             protected PasswordAuthentication getPasswordAuthentication() {
 
-                return new PasswordAuthentication("drmanjugoyalwebsite@outlook.com", "password");
+                return new PasswordAuthentication("bethelworshipprayerline@outlook.com", "BethelHOW#Blessed12");
 
             }
         });
@@ -74,13 +77,14 @@ public class SendMail {
             message.setSubject("Bethel House of Worship website contact");
 
             // Now set the actual message
-            message.setText("Bethel House of Worship, \n" +
-                    "Date received: " + date + "\n" +
-                    "The following disciple has sent the following message and provided their contact information as follows: \n" + "\n" +
-                    "Name: " + firstName +" " + lastName + "\n" + "Email: " + email + "\n" + "Phone Number: " + phoneNumber + "\n" +
-                    "Location: " + city +", " + state + ", " + country +"\n" +
-                    "Message: " + messsage + "\n" + "\n" +
-                    "Sincerely yours," + "\n" + "\n" + "Bethel House of Worship Website Contact "  );
+            message.setText(
+                    "Date contact received: " + contactToEmail.getDate() + "\n" +
+                    "Bethel House of Worship, \n" +
+                    "The following message and contact information were submitted through the website: \n" + "\n" +
+                    "Name: " + contactToEmail.getFirstName() +" " + contactToEmail.getLastName() + "\n" + "Email: " + contactToEmail.getEmail() + "\n" + "Phone Number: " + contactToEmail.getPhoneNum() + "\n" +
+                    "Location: " + contactToEmail.getCity() +", " + contactToEmail.getState() + ", " + contactToEmail.getCountry() +"\n" +
+                    "Message: " + contactToEmail.getMessage() + "\n" + "\n" +
+                    "Sincerely yours," + "\n" + "Bethel House of Worship Website Contact "  );
 
             System.out.println("sending...");
             // Send message
