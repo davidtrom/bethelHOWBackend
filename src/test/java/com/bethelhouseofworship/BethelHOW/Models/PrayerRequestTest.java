@@ -103,4 +103,15 @@ class PrayerRequestTest {
         prayerRequestTest.setCreationDate(LocalDate.of(2020, 7, 8));
         Assertions.assertEquals(LocalDate.of(2020, 7, 8), prayerRequestTest.getCreationDate());
     }
+
+    @Test
+    void getPrayerRequestStatus() {
+        Assertions.assertEquals(RequestStatus.PENDING, prayerRequestTest.getRequestStatus());
+    }
+
+    @Test
+    void setPrayerRequestStatus() {
+        prayerRequestTest.setRequestStatus(RequestStatus.APPROVED);
+        Assertions.assertEquals(RequestStatus.APPROVED, prayerRequestTest.getRequestStatus());
+    }
 }

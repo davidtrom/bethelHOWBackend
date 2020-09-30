@@ -103,4 +103,15 @@ class TestimonialTest {
         testimonialTest.setCreationDate(LocalDate.of(2020, 7, 8));
         Assertions.assertEquals(LocalDate.of(2020, 7, 8), testimonialTest.getCreationDate());
     }
+
+    @Test
+    void getRequestStatus() {
+        Assertions.assertEquals(RequestStatus.PENDING, testimonialTest.getRequestStatus());
+    }
+
+    @Test
+    void setRequestStatus() {
+        testimonialTest.setRequestStatus(RequestStatus.DENIED);
+        Assertions.assertEquals(RequestStatus.DENIED, testimonialTest.getRequestStatus());
+    }
 }
