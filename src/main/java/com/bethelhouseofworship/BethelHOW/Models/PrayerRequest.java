@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 public class PrayerRequest {
@@ -21,6 +20,7 @@ public class PrayerRequest {
     private String locationCountry;
     private String prayerRequest;
     private LocalDate creationDate  = LocalDate.now();
+    private RequestStatus requestStatus = RequestStatus.PENDING;
 
     public PrayerRequest(){}
 
@@ -97,5 +97,13 @@ public class PrayerRequest {
 
     public void setCreationDate(LocalDate creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public RequestStatus getRequestStatus() {
+        return requestStatus;
+    }
+
+    public void setRequestStatus(RequestStatus requestStatus) {
+        this.requestStatus = requestStatus;
     }
 }
