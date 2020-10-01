@@ -21,9 +21,20 @@ public class PrayerRequestController {
         return new ResponseEntity<>(prayerRequestService.addRequest(request), HttpStatus.CREATED);
     }
 
-    @GetMapping("/view-requests")
-    public ResponseEntity<Iterable<PrayerRequest>> viewPrayerRequests (){
-        return new ResponseEntity<>(prayerRequestService.getAllPrayerRequests(), HttpStatus.OK);
+    @GetMapping("/view-approved")
+    public ResponseEntity<Iterable<PrayerRequest>> viewApprovedPrayerRequests (){
+        return new ResponseEntity<>(prayerRequestService.getAllApprovedPrayerRequests(), HttpStatus.OK);
+    }
+
+
+    @GetMapping("/view-denied")
+    public ResponseEntity<Iterable<PrayerRequest>> viewDeniedPrayerRequests (){
+        return new ResponseEntity<>(prayerRequestService.getAllDeniedPrayerRequests(), HttpStatus.OK);
+    }
+
+    @GetMapping("/view-pending")
+    public ResponseEntity<Iterable<PrayerRequest>> viewPendingPrayerRequests (){
+        return new ResponseEntity<>(prayerRequestService.getAllPendingPrayerRequests(), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete-request")

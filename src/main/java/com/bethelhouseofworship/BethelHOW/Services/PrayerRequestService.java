@@ -21,11 +21,11 @@ public class PrayerRequestService {
         return prayerRequestRepository.findAllByRequestStatusApproved(RequestStatus.APPROVED);
     }
 
-    public Iterable<PrayerRequest> getAllDeniedPrayerRequest(){
+    public Iterable<PrayerRequest> getAllDeniedPrayerRequests(){
         return prayerRequestRepository.findAllByRequestStatusDenied(RequestStatus.DENIED);
     }
 
-    public Iterable<PrayerRequest> getAllPendingPrayerRequest(){
+    public Iterable<PrayerRequest> getAllPendingPrayerRequests(){
         return prayerRequestRepository.findAllByRequestStatusPending(RequestStatus.PENDING);
     }
 

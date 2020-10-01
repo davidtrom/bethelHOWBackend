@@ -19,9 +19,19 @@ public class TestimonialController {
         return new ResponseEntity<>(testimonialService.addTestimonial(testimonial), HttpStatus.CREATED);
     }
 
-    @GetMapping("/view-all")
-    public ResponseEntity <Iterable<Testimonial>> getTestimonials(){
-        return new ResponseEntity<>(testimonialService.getAllTestimonials(), HttpStatus.OK);
+    @GetMapping("/view-approved")
+    public ResponseEntity <Iterable<Testimonial>> getApprovedTestimonials(){
+        return new ResponseEntity<>(testimonialService.getAllApprovedTestimonials(), HttpStatus.OK);
+    }
+
+    @GetMapping("/view-denied")
+    public ResponseEntity <Iterable<Testimonial>> getDeniedTestimonials(){
+        return new ResponseEntity<>(testimonialService.getAllDeniedTestimonials(), HttpStatus.OK);
+    }
+
+    @GetMapping("/view-pending")
+    public ResponseEntity <Iterable<Testimonial>> getPendingTestimonials(){
+        return new ResponseEntity<>(testimonialService.getAllPendingTestimonials(), HttpStatus.OK);
     }
 
 
