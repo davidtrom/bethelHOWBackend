@@ -69,10 +69,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
                 // dont authenticate this particular request
                 .authorizeRequests().antMatchers(
      "/authenticate",
-                "/prayer-requests/view-requests",
+                "/prayer-requests/view-approved",
                 "/prayer-requests/create",
                 "/testimonials/create",
-                "/testimonials/view-all",
+                "/testimonials/view-approved",
                 "/contact/send-email").permitAll().
                 // all other requests need to be authenticated
                         anyRequest().authenticated().and().

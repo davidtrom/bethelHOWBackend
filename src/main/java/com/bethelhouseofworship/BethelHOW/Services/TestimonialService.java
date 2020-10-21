@@ -17,16 +17,16 @@ public class TestimonialService {
     }
 
     public Iterable<Testimonial> getAllApprovedTestimonials(){
-        return testimonialRepository.findAllByRequestStatusApproved(RequestStatus.APPROVED);
+        return testimonialRepository.findAllByRequestStatus(RequestStatus.APPROVED);
     }
 
-    public Iterable<Testimonial> getAllDeniedTestimonials(){
-        return testimonialRepository.findAllByRequestStatusDenied(RequestStatus.DENIED);
-    }
-
-    public Iterable<Testimonial> getAllPendingTestimonials(){
-        return testimonialRepository.findAllByRequestStatusPending(RequestStatus.PENDING);
-    }
+//    public Iterable<Testimonial> getAllDeniedTestimonials(){
+//        return testimonialRepository.findAllByRequestStatusDenied(RequestStatus.DENIED);
+//    }
+//
+//    public Iterable<Testimonial> getAllPendingTestimonials(){
+//        return testimonialRepository.findAllByRequestStatusPending(RequestStatus.PENDING);
+//    }
 
     public boolean deleteTestimonial(Long id){
         if(testimonialRepository.existsById(id)) {

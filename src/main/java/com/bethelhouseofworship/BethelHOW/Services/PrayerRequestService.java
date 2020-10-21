@@ -18,16 +18,16 @@ public class PrayerRequestService {
     }
 
     public Iterable<PrayerRequest> getAllApprovedPrayerRequests(){
-        return prayerRequestRepository.findAllByRequestStatusApproved(RequestStatus.APPROVED);
+        return prayerRequestRepository.findAllByRequestStatus(RequestStatus.APPROVED);
     }
 
-    public Iterable<PrayerRequest> getAllDeniedPrayerRequests(){
-        return prayerRequestRepository.findAllByRequestStatusDenied(RequestStatus.DENIED);
-    }
-
-    public Iterable<PrayerRequest> getAllPendingPrayerRequests(){
-        return prayerRequestRepository.findAllByRequestStatusPending(RequestStatus.PENDING);
-    }
+//    public Iterable<PrayerRequest> getAllDeniedPrayerRequests(){
+//        return prayerRequestRepository.findAllByRequestStatusDenied(RequestStatus.DENIED);
+//    }
+//
+//    public Iterable<PrayerRequest> getAllPendingPrayerRequests(){
+//        return prayerRequestRepository.findAllByRequestStatusPending(RequestStatus.PENDING);
+//    }
 
     public boolean deletePrayerRequest(Long id){
         if(prayerRequestRepository.existsById(id)) {

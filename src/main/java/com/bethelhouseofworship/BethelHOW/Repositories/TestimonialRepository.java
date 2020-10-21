@@ -7,7 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TestimonialRepository extends CrudRepository<Testimonial, Long> {
-    public Iterable<Testimonial> findAllByRequestStatusApproved(RequestStatus requestStatus);
-    public Iterable<Testimonial> findAllByRequestStatusDenied(RequestStatus requestStatus);
-    public Iterable<Testimonial> findAllByRequestStatusPending(RequestStatus requestStatus);
+    Iterable<Testimonial> findAllByRequestStatus(RequestStatus requestStatus);
 }
