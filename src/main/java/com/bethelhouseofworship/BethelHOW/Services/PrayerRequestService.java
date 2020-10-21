@@ -1,6 +1,8 @@
 package com.bethelhouseofworship.BethelHOW.Services;
 
 import com.bethelhouseofworship.BethelHOW.Models.PrayerRequest;
+import com.bethelhouseofworship.BethelHOW.Models.RequestStatus;
+import com.bethelhouseofworship.BethelHOW.Models.Testimonial;
 import com.bethelhouseofworship.BethelHOW.Repositories.PrayerRequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,14 +14,20 @@ public class PrayerRequestService {
     private PrayerRequestRepository prayerRequestRepository;
 
     public PrayerRequest addRequest(PrayerRequest prayerRequest){
-
-        System.out.println(prayerRequest.getLocationCity());
         return prayerRequestRepository.save(prayerRequest);
     }
 
-    public Iterable<PrayerRequest> getAllPrayerRequests(){
-        return prayerRequestRepository.findAll();
+    public Iterable<PrayerRequest> getAllApprovedPrayerRequests(){
+        return prayerRequestRepository.findAllByRequestStatus(RequestStatus.APPROVED);
     }
+
+//    public Iterable<PrayerRequest> getAllDeniedPrayerRequests(){
+//        return prayerRequestRepository.findAllByRequestStatusDenied(RequestStatus.DENIED);
+//    }
+//
+//    public Iterable<PrayerRequest> getAllPendingPrayerRequests(){
+//        return prayerRequestRepository.findAllByRequestStatusPending(RequestStatus.PENDING);
+//    }
 
     public boolean deletePrayerRequest(Long id){
         if(prayerRequestRepository.existsById(id)) {
