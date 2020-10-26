@@ -70,6 +70,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
                 .authorizeRequests().antMatchers(
      "/authenticate",
                 "/prayer-requests/view-approved",
+                "/prayer-requests/view-pending",
+                "/prayer-requests/view-denied",
                 "/prayer-requests/create",
                 "/testimonials/create",
                 "/testimonials/view-approved",

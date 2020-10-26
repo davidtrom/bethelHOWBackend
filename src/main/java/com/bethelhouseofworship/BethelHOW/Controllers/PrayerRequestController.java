@@ -26,16 +26,16 @@ public class PrayerRequestController {
         return new ResponseEntity<>(prayerRequestService.getAllApprovedPrayerRequests(), HttpStatus.OK);
     }
 
-//
-//    @GetMapping("/view-denied")
-//    public ResponseEntity<Iterable<PrayerRequest>> viewDeniedPrayerRequests (){
-//        return new ResponseEntity<>(prayerRequestService.getAllDeniedPrayerRequests(), HttpStatus.OK);
-//    }
-//
-//    @GetMapping("/view-pending")
-//    public ResponseEntity<Iterable<PrayerRequest>> viewPendingPrayerRequests (){
-//        return new ResponseEntity<>(prayerRequestService.getAllPendingPrayerRequests(), HttpStatus.OK);
-//    }
+
+    @GetMapping("/view-denied")
+    public ResponseEntity<Iterable<PrayerRequest>> viewDeniedPrayerRequests (){
+        return new ResponseEntity<>(prayerRequestService.getAllDeniedPrayerRequests(), HttpStatus.OK);
+    }
+
+    @GetMapping("/view-pending")
+    public ResponseEntity<Iterable<PrayerRequest>> viewPendingPrayerRequests (){
+        return new ResponseEntity<>(prayerRequestService.getAllPendingPrayerRequests(), HttpStatus.OK);
+    }
 
     @DeleteMapping("/delete-request")
     public ResponseEntity<Boolean> viewPrayerRequests (@PathVariable Long requestId){
