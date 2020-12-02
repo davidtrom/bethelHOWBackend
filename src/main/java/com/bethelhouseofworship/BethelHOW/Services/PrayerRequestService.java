@@ -36,4 +36,22 @@ public class PrayerRequestService {
         else return false;
     }
 
+    public PrayerRequest approveRequest(Long id){
+        PrayerRequest requestToApprove = prayerRequestRepository.findById(id).get();
+        requestToApprove.setRequestStatus(RequestStatus.APPROVED);
+        return prayerRequestRepository.save(requestToApprove);
+    }
+
+    public PrayerRequest denyRequest(Long id){
+        PrayerRequest requestToDeny = prayerRequestRepository.findById(id).get();
+        requestToDeny.setRequestStatus(RequestStatus.DENIED);
+        return prayerRequestRepository.save(requestToDeny);
+    }
+
+    public PrayerRequest pendingRequest(Long id){
+        PrayerRequest requestToPending = prayerRequestRepository.findById(id).get();
+        requestToPending.setRequestStatus(RequestStatus.PENDING);
+        return prayerRequestRepository.save(requestToPending);
+    }
+
 }
