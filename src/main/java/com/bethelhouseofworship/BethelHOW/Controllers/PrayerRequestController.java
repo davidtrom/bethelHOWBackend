@@ -2,7 +2,6 @@ package com.bethelhouseofworship.BethelHOW.Controllers;
 
 
 import com.bethelhouseofworship.BethelHOW.Models.PrayerRequest;
-import com.bethelhouseofworship.BethelHOW.Models.Testimonial;
 import com.bethelhouseofworship.BethelHOW.Services.PrayerRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,8 +36,23 @@ public class PrayerRequestController {
         return new ResponseEntity<>(prayerRequestService.getAllPendingPrayerRequests(), HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete-request")
+    @DeleteMapping("/{requestId}/delete-request")
     public ResponseEntity<Boolean> viewPrayerRequests (@PathVariable Long requestId){
         return new ResponseEntity<>(prayerRequestService.deletePrayerRequest(requestId), HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}/approve-request")
+    public ResponseEntity<PrayerRequest> approveRequest(@PathVariable Long id){
+        return new ResponseEntity<>(prayerRequestService.approveRequest(id), HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}/deny-request")
+    public ResponseEntity<PrayerRequest> denyRequest(@PathVariable Long id){
+        return new ResponseEntity<>(prayerRequestService.denyRequest(id), HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}/pending-request")
+    public ResponseEntity<PrayerRequest> pendingRequest(@PathVariable Long id){
+        return new ResponseEntity<>(prayerRequestService.pendingRequest(id), HttpStatus.OK);
     }
 }
