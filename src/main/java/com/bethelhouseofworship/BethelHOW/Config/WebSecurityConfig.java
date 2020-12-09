@@ -73,6 +73,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
                 "/prayer-requests/view-pending",
                 "/prayer-requests/view-denied",
                 "/prayer-requests/create",
+                "/prayer-requests/{id}/approve-request",
+                "/prayer-requests/{id}/deny-request",
+                "/prayer-requests/{id}/pending-request",
                 "/testimonials/create",
                 "/testimonials/view-approved",
                 "/contact/send-email").permitAll().
