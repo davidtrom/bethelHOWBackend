@@ -54,4 +54,13 @@ public class PrayerRequestService {
         return prayerRequestRepository.save(requestToPending);
     }
 
+    public Iterable<PrayerRequest> approveAllRequests(){
+        Iterable<PrayerRequest> allPendingRequests = prayerRequestRepository.findAllByRequestStatus(RequestStatus.PENDING);
+        for (PrayerRequest request : allPendingRequests) {
+            request.setRequestStatus(RequestStatus.APPROVED);
+            prayerRequestRepository.save(request);
+        }
+        return prayerRequestRepository.findAllByRequestStatus(RequestStatus.APPROVED);
+    }
+
 }
