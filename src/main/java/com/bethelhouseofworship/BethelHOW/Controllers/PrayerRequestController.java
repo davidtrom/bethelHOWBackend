@@ -55,4 +55,9 @@ public class PrayerRequestController {
     public ResponseEntity<PrayerRequest> pendingRequest(@PathVariable Long id){
         return new ResponseEntity<>(prayerRequestService.pendingRequest(id), HttpStatus.OK);
     }
+
+    @PutMapping("/approve-all")
+    public ResponseEntity<Iterable<PrayerRequest>> pendingRequest(){
+        return new ResponseEntity<>(prayerRequestService.approveAllRequests(), HttpStatus.OK);
+    }
 }
