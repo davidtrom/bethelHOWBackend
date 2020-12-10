@@ -24,8 +24,7 @@ public class PrayerRequestController {
     public ResponseEntity<Iterable<PrayerRequest>> viewApprovedPrayerRequests (){
         return new ResponseEntity<>(prayerRequestService.getAllApprovedPrayerRequests(), HttpStatus.OK);
     }
-
-
+    
     @GetMapping("/view-denied")
     public ResponseEntity<Iterable<PrayerRequest>> viewDeniedPrayerRequests (){
         return new ResponseEntity<>(prayerRequestService.getAllDeniedPrayerRequests(), HttpStatus.OK);
@@ -57,7 +56,7 @@ public class PrayerRequestController {
     }
 
     @PutMapping("/approve-all")
-    public ResponseEntity<Iterable<PrayerRequest>> pendingRequest(){
+    public ResponseEntity<Boolean> pendingRequest(){
         return new ResponseEntity<>(prayerRequestService.approveAllRequests(), HttpStatus.OK);
     }
 }

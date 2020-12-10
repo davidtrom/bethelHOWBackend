@@ -6,8 +6,13 @@ import com.bethelhouseofworship.BethelHOW.Repositories.PrayerRequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 @Service
 public class PrayerRequestService {
+
 
     @Autowired
     private PrayerRequestRepository prayerRequestRepository;
@@ -54,13 +59,23 @@ public class PrayerRequestService {
         return prayerRequestRepository.save(requestToPending);
     }
 
-    public Iterable<PrayerRequest> approveAllRequests(){
+    public boolean approveAllRequests(){
+        System.out.println("Inside approve all requests");
+        Boolean flag = null;
+        List<PrayerRequest> allPendingRequestsList = new ArrayList<PrayerRequest>();
         Iterable<PrayerRequest> allPendingRequests = prayerRequestRepository.findAllByRequestStatus(RequestStatus.PENDING);
-        for (PrayerRequest request : allPendingRequests) {
-            request.setRequestStatus(RequestStatus.APPROVED);
-            prayerRequestRepository.save(request);
+        allPendingRequests.forEach(allPendingRequestsList::add);
+        try {
+            for (PrayerRequest request : allPendingRequestsList) {
+                request.setRequestStatus(RequestStatus.APPROVED);
+                prayerRequestRepository.save(request);
+            }
+            flag = true;
+        } catch (Exception e){
+            flag = false;
         }
-        return prayerRequestRepository.findAllByRequestStatus(RequestStatus.APPROVED);
+        System.out.println(flag);
+        return flag;
     }
 
 }
