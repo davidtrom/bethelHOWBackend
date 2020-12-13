@@ -5,10 +5,13 @@ import com.bethelhouseofworship.BethelHOW.Models.RequestStatus;
 import com.bethelhouseofworship.BethelHOW.Repositories.PrayerRequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import java.time.temporal.ChronoUnit;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 public class PrayerRequestService {
@@ -59,13 +62,13 @@ public class PrayerRequestService {
         return prayerRequestRepository.save(requestToPending);
     }
 
-    public boolean approveAllRequests(){
-        System.out.println("Inside approve all requests");
-        Boolean flag = null;
-        List<PrayerRequest> allPendingRequestsList = new ArrayList<PrayerRequest>();
+    public Boolean approveAllRequests(){
+        Boolean flag;
+        List<PrayerRequest> allPendingRequestsList = new ArrayList<>();
         Iterable<PrayerRequest> allPendingRequests = prayerRequestRepository.findAllByRequestStatus(RequestStatus.PENDING);
         allPendingRequests.forEach(allPendingRequestsList::add);
         try {
+            System.out.println("Inside Try");
             for (PrayerRequest request : allPendingRequestsList) {
                 request.setRequestStatus(RequestStatus.APPROVED);
                 prayerRequestRepository.save(request);
@@ -74,7 +77,40 @@ public class PrayerRequestService {
         } catch (Exception e){
             flag = false;
         }
-        System.out.println(flag);
+        return flag;
+    }
+
+    public Boolean deleteDeniedRequests(){
+        Boolean flag;
+        Iterable<PrayerRequest> allDeniedRequests = prayerRequestRepository.findAllByRequestStatus(RequestStatus.DENIED);
+        try{
+            prayerRequestRepository.deleteAll(allDeniedRequests);
+            flag = true;
+        }catch (Exception e){
+            flag = false;
+        }
+        return flag;
+    }
+
+    public Boolean removeOutdatedRequests(){
+        //Prayer Requests deleted after 60 days
+        Boolean flag;
+        List<PrayerRequest> allRequestsList = new ArrayList<>();
+        Iterable<PrayerRequest> getAllRequests = prayerRequestRepository.findAll();
+        getAllRequests.forEach(allRequestsList::add);
+        try{
+            for (PrayerRequest request: allRequestsList){
+                LocalDate creationDate = request.getCreationDate();
+                long diff = ChronoUnit.DAYS.between(creationDate, LocalDate.now());
+                if(diff > 60){
+                    prayerRequestRepository.delete(request);
+                }
+            }
+            flag = true;
+
+        } catch(Exception e){
+            flag = false;
+        }
         return flag;
     }
 
