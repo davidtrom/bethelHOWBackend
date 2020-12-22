@@ -20,7 +20,7 @@ public class Contact {
     private String state;
     private String country;
     private String message;
-    private LocalDate date = LocalDate.now();
+    private LocalDate creationDate = LocalDate.now();
 
     public Contact() {}
 
@@ -34,7 +34,6 @@ public class Contact {
         this.state = state;
         this.country = country;
         this.message = message;
-        //this.date = date;
     }
 
     public Long getId() {
@@ -109,12 +108,12 @@ public class Contact {
         this.message = message;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getCreationDate() {
+        return creationDate;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
     }
 }
 

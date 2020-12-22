@@ -7,11 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.temporal.ChronoUnit;
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Stream;
 
 @Service
 public class PrayerRequestService {
@@ -20,8 +17,15 @@ public class PrayerRequestService {
     @Autowired
     private PrayerRequestRepository prayerRequestRepository;
 
-    public PrayerRequest addRequest(PrayerRequest prayerRequest){
-        return prayerRequestRepository.save(prayerRequest);
+    public Boolean addRequest(PrayerRequest prayerRequest){
+        Boolean didEmailSend;
+        try{
+            didEmailSend = SendMail.sendNotificationMessage(prayerRequest);
+            prayerRequestRepository.save(prayerRequest);
+            } catch (Exception e){
+            didEmailSend = false;
+        }
+        return didEmailSend;
     }
 
     public Iterable<PrayerRequest> getAllApprovedPrayerRequests(){
@@ -68,7 +72,6 @@ public class PrayerRequestService {
         Iterable<PrayerRequest> allPendingRequests = prayerRequestRepository.findAllByRequestStatus(RequestStatus.PENDING);
         allPendingRequests.forEach(allPendingRequestsList::add);
         try {
-            System.out.println("Inside Try");
             for (PrayerRequest request : allPendingRequestsList) {
                 request.setRequestStatus(RequestStatus.APPROVED);
                 prayerRequestRepository.save(request);
@@ -100,8 +103,7 @@ public class PrayerRequestService {
         getAllRequests.forEach(allRequestsList::add);
         try{
             for (PrayerRequest request: allRequestsList){
-                LocalDate creationDate = request.getCreationDate();
-                long diff = ChronoUnit.DAYS.between(creationDate, LocalDate.now());
+                long diff = ChronoUnit.DAYS.between(request.getCreationDate(), LocalDate.now());
                 if(diff > 60){
                     prayerRequestRepository.delete(request);
                 }

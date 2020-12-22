@@ -16,7 +16,7 @@ public class PrayerRequestController {
     private PrayerRequestService prayerRequestService;
 
     @PostMapping("/create")
-    public ResponseEntity<PrayerRequest> createTestimonial(@RequestBody PrayerRequest request){
+    public ResponseEntity<Boolean> createTestimonial(@RequestBody PrayerRequest request){
         return new ResponseEntity<>(prayerRequestService.addRequest(request), HttpStatus.CREATED);
     }
 

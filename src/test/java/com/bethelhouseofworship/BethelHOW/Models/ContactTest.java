@@ -116,12 +116,12 @@ class ContactTest {
 
     @Test
     void getDate() {
-        Assertions.assertEquals(date, contactTest.getDate());
+        Assertions.assertEquals(date, contactTest.getCreationDate());
     }
 
     @Test
     void setDate() {
-        contactTest.setDate(LocalDate.of(2020, 8, 22));
-        Assertions.assertEquals(LocalDate.of(2020, 8, 22), contactTest.getDate());
+        contactTest.setCreationDate(LocalDate.of(2020, 8, 22));
+        Assertions.assertEquals(LocalDate.of(2020, 8, 22), contactTest.getCreationDate());
     }
 }
