@@ -115,5 +115,4 @@ public class PrayerRequestService {
         }
         return flag;
     }
-
 }

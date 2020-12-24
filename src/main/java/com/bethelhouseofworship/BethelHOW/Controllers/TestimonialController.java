@@ -15,7 +15,7 @@ public class TestimonialController {
     private TestimonialService testimonialService;
 
     @PostMapping("/create")
-    public ResponseEntity <Testimonial> createTestimonial(@RequestBody Testimonial testimonial){
+    public ResponseEntity <Boolean> createTestimonial(@RequestBody Testimonial testimonial){
         return new ResponseEntity<>(testimonialService.addTestimonial(testimonial), HttpStatus.CREATED);
     }
 

@@ -77,7 +77,7 @@ public class SendMail {
 
             // Now set the actual message
             message.setText(
-                    "Date contact received: " + contactToEmail.getDate() + "\n" +
+                    "Date contact received: " + contactToEmail.getCreationDate() + "\n" +
                     "Bethel House of Worship, \n" +
                     "The following message and contact information were submitted through the website: \n" + "\n" +
                     "Name: " + contactToEmail.getFirstName() +" " + contactToEmail.getLastName() + "\n" + "Email: " + contactToEmail.getEmail() + "\n" + "Phone Number: " + contactToEmail.getPhoneNum() + "\n" +
