@@ -1,6 +1,6 @@
 package com.bethelhouseofworship.BethelHOW.Services;
 
-import com.bethelhouseofworship.BethelHOW.Models.PrayerRequest;
+
 import com.bethelhouseofworship.BethelHOW.Models.RequestStatus;
 import com.bethelhouseofworship.BethelHOW.Models.Testimonial;
 import com.bethelhouseofworship.BethelHOW.Repositories.TestimonialRepository;
@@ -49,13 +49,13 @@ public class TestimonialService {
         else return false;
     }
     
-    public Testimonial approveRequest(Long id){
+    public Testimonial approveTestimonial(Long id){
         Testimonial requestToApprove = testimonialRepository.findById(id).get();
         requestToApprove.setRequestStatus(RequestStatus.APPROVED);
         return testimonialRepository.save(requestToApprove);
     }
 
-    public Testimonial denyRequest(Long id){
+    public Testimonial denyTestimonial(Long id){
         Testimonial requestToDeny = testimonialRepository.findById(id).get();
         requestToDeny.setRequestStatus(RequestStatus.DENIED);
         return testimonialRepository.save(requestToDeny);
@@ -67,7 +67,7 @@ public class TestimonialService {
         return testimonialRepository.save(requestToPending);
     }
 
-    public Boolean approveAllRequests(){
+    public Boolean approveAllTestimonials(){
         Boolean flag;
         List<Testimonial> allPendingTestimonialsList = new ArrayList<>();
         Iterable<Testimonial> allPendingTestimonials = testimonialRepository.findAllByRequestStatus(RequestStatus.PENDING);
@@ -84,7 +84,7 @@ public class TestimonialService {
         return flag;
     }
 
-    public Boolean deleteDeniedRequests(){
+    public Boolean deleteDeniedTestimonials(){
         Boolean flag;
         Iterable<Testimonial> allDeniedTestimonials = testimonialRepository.findAllByRequestStatus(RequestStatus.DENIED);
         try{
@@ -96,7 +96,7 @@ public class TestimonialService {
         return flag;
     }
 
-    public Boolean removeOutdatedRequests(){
+    public Boolean removeOutdatedTestimonials(){
         //Testimonials deleted after 365 days
         Boolean flag;
         List<Testimonial> allTestimonialsList = new ArrayList<>();
