@@ -78,6 +78,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
                 "/prayer-requests/{id}/pending-request",
                 "/testimonials/create",
                 "/testimonials/view-approved",
+                "/prayer-requests/approve-all",
+                "/prayer-requests/remove-outdated",
                 "/contact/send-email").permitAll().
                 // all other requests need to be authenticated
                         anyRequest().authenticated().and().

@@ -5,15 +5,27 @@ import com.bethelhouseofworship.BethelHOW.Models.RequestStatus;
 import com.bethelhouseofworship.BethelHOW.Repositories.PrayerRequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.time.temporal.ChronoUnit;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class PrayerRequestService {
 
+
     @Autowired
     private PrayerRequestRepository prayerRequestRepository;
 
-    public PrayerRequest addRequest(PrayerRequest prayerRequest){
-        return prayerRequestRepository.save(prayerRequest);
+    public Boolean addRequest(PrayerRequest prayerRequest){
+        Boolean didEmailSend;
+        try{
+            didEmailSend = SendMail.sendNotificationMessage(prayerRequest);
+            prayerRequestRepository.save(prayerRequest);
+            } catch (Exception e){
+            didEmailSend = false;
+        }
+        return didEmailSend;
     }
 
     public Iterable<PrayerRequest> getAllApprovedPrayerRequests(){
@@ -54,13 +66,53 @@ public class PrayerRequestService {
         return prayerRequestRepository.save(requestToPending);
     }
 
-    public Iterable<PrayerRequest> approveAllRequests(){
+    public Boolean approveAllRequests(){
+        Boolean flag;
+        List<PrayerRequest> allPendingRequestsList = new ArrayList<>();
         Iterable<PrayerRequest> allPendingRequests = prayerRequestRepository.findAllByRequestStatus(RequestStatus.PENDING);
-        for (PrayerRequest request : allPendingRequests) {
-            request.setRequestStatus(RequestStatus.APPROVED);
-            prayerRequestRepository.save(request);
+        allPendingRequests.forEach(allPendingRequestsList::add);
+        try {
+            for (PrayerRequest request : allPendingRequestsList) {
+                request.setRequestStatus(RequestStatus.APPROVED);
+                prayerRequestRepository.save(request);
+            }
+            flag = true;
+        } catch (Exception e){
+            flag = false;
         }
-        return prayerRequestRepository.findAllByRequestStatus(RequestStatus.APPROVED);
+        return flag;
     }
 
+    public Boolean deleteDeniedRequests(){
+        Boolean flag;
+        Iterable<PrayerRequest> allDeniedRequests = prayerRequestRepository.findAllByRequestStatus(RequestStatus.DENIED);
+        try{
+            prayerRequestRepository.deleteAll(allDeniedRequests);
+            flag = true;
+        }catch (Exception e){
+            flag = false;
+        }
+        return flag;
+    }
+
+    public Boolean removeOutdatedRequests(){
+        //Prayer Requests deleted after 60 days
+        Boolean flag;
+        List<PrayerRequest> allRequestsList = new ArrayList<>();
+        Iterable<PrayerRequest> getAllRequests = prayerRequestRepository.findAll();
+        getAllRequests.forEach(allRequestsList::add);
+        try{
+            for (PrayerRequest request: allRequestsList){
+                long diff = ChronoUnit.DAYS.between(request.getCreationDate(), LocalDate.now());
+                if(diff > 60){
+                    prayerRequestRepository.delete(request);
+                }
+            }
+            flag = true;
+
+        } catch(Exception e){
+            flag = false;
+        }
+        return flag;
+    }
 }
