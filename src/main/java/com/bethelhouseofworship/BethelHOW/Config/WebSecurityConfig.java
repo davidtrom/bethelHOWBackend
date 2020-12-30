@@ -68,16 +68,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
         httpSecurity.csrf().disable()
                 // dont authenticate this particular request
                 .authorizeRequests().antMatchers(
-     "/authenticate",
+                "/authenticate",
                 "/prayer-requests/view-approved",
                 "/prayer-requests/view-pending",
                 "/prayer-requests/view-denied",
+                "/prayer-requests/delete-denied",
                 "/prayer-requests/create",
                 "/prayer-requests/{id}/approve-request",
                 "/prayer-requests/{id}/deny-request",
                 "/prayer-requests/{id}/pending-request",
                 "/testimonials/create",
                 "/testimonials/view-approved",
+                "/testimonials/view-pending",
+                "/testimonials/view-denied",
+                "/testimonials/approve-all",
+                "/testimonials/delete-denied",
+                "/testimonials/{id}/deny-request",
                 "/prayer-requests/approve-all",
                 "/prayer-requests/remove-outdated",
                 "/contact/send-email").permitAll().

@@ -1,7 +1,6 @@
 package com.bethelhouseofworship.BethelHOW.Services;
 
 import com.bethelhouseofworship.BethelHOW.Models.Contact;
-import com.bethelhouseofworship.BethelHOW.Models.PrayerRequest;
 import com.bethelhouseofworship.BethelHOW.Repositories.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,7 +41,6 @@ public class ContactService {
                 }
             }
             flag = true;
-
         } catch(Exception e){
             flag = false;
         }
