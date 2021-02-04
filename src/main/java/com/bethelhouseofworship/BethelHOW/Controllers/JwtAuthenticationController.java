@@ -17,7 +17,7 @@ import com.bethelhouseofworship.BethelHOW.Models.JwtRequest;
 import com.bethelhouseofworship.BethelHOW.Models.JwtResponse;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200")
 public class JwtAuthenticationController {
 
 
@@ -34,12 +34,16 @@ public class JwtAuthenticationController {
         public ResponseEntity<?> generateAuthenticationToken(@RequestBody JwtRequest authenticationRequest)
                 throws Exception {
 
+            System.out.println(authenticationRequest.getUsername());
+            System.out.println(authenticationRequest.getPassword());
+
             authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
             final UserDetails userDetails = jwtInMemoryUserDetailsService
                     .loadUserByUsername(authenticationRequest.getUsername());
 
             final String token = jwtTokenUtil.generateToken(userDetails);
+            System.out.println("In authenticate controller: token - " + token);
 
             return ResponseEntity.ok(new JwtResponse(token));
         }

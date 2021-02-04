@@ -5,10 +5,7 @@ import com.bethelhouseofworship.BethelHOW.Services.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/contact")
@@ -20,6 +17,11 @@ public class ContactController {
     @PostMapping("/send-email")
     public ResponseEntity<Boolean> sendEmail(@RequestBody Contact contact){
         return new ResponseEntity<>(contactService.sendEmail(contact), HttpStatus.OK);
+    }
+
+    @PutMapping("/clean-contacts")
+    public ResponseEntity<Boolean> removeOutdatedContacts (){
+        return new ResponseEntity<>(contactService.removeOutdatedContacts(), HttpStatus.OK);
     }
 
 

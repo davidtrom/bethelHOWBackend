@@ -41,7 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
         auth.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder());
     }
 
-//    @Override
+   @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins("*")
@@ -65,10 +65,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         // We don't need CSRF for this example
-        httpSecurity.csrf().disable()
+        httpSecurity.csrf().disable().authorizeRequests().antMatchers("/authenticate")
                 // dont authenticate this particular request
-                .authorizeRequests().antMatchers(
-                "/authenticate",
+                .permitAll().antMatchers(
                 "/prayer-requests/view-approved",
                 "/prayer-requests/view-pending",
                 "/prayer-requests/view-denied",
@@ -83,10 +82,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
                 "/testimonials/view-denied",
                 "/testimonials/approve-all",
                 "/testimonials/delete-denied",
-                "/testimonials/{id}/deny-request",
+                "/testimonials/{id}/deny-testimonial",
+                "/testimonials/{id}/approve-testimonial",
+                "/testimonials/{id}/pending-testimonial",
                 "/prayer-requests/approve-all",
                 "/prayer-requests/remove-outdated",
-                "/contact/send-email").permitAll().
+                "/testimonials/remove-outdated",
+                "/contact/send-email",
+                "/contact/clean-contacts"
+                ).permitAll().
                 // all other requests need to be authenticated
                         anyRequest().authenticated().and().
                 // make sure we use stateless session; session won't be used to
