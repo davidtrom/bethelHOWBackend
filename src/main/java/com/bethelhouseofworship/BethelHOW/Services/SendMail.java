@@ -101,8 +101,8 @@ public class SendMail {
         //System.out.println(emailPassword);
 
         // Recipient's email ID needs to be mentioned.
-        //String to = "bethel2029@gmail.com";
-        String to = "davidtrom@hotmail.com";
+        String to = "bethel2029@gmail.com";
+        //String to = "davidtrom@hotmail.com";
 
         // Sender's email ID needs to be mentioned
         String from = "bethelworshipprayerline@outlook.com";
@@ -173,8 +173,8 @@ public class SendMail {
         //System.out.println(emailPassword);
 
         // Recipient's email ID needs to be mentioned.
-        //String to = "bethel2029@gmail.com";
-        String to = "davidtrom@hotmail.com";
+        String to = "bethel2029@gmail.com";
+        //String to = "davidtrom@hotmail.com";
 
         // Sender's email ID needs to be mentioned
         String from = "bethelworshipprayerline@outlook.com";
